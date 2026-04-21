@@ -21,8 +21,6 @@
     <script type="text/javascript" src="tram.geojson"></script>
     <script type="text/javascript" src="city_centre.geojson"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
     <script type="module">
         import EmbeddedPageSdk from "https://app.realeye.io/sdk/js/testRunnerEmbeddableSdk-1.6.js"
 
@@ -112,24 +110,6 @@
         L.control.scale().addTo(map); //meritko
         baseSatellite.addTo(map); //zakladni mapa, ktera se zobrazi jako prvni
 
-        // Function to capture screenshot on map interaction
-        function captureScreenshot() {
-            console.log("Map interaction detected");
-            html2canvas(document.body, { useCORS: true }).then(function(canvas) {
-                console.log("Canvas created");
-                var link = document.createElement('a');
-                link.download = 'map_screenshot.png';
-                link.href = canvas.toDataURL();
-                link.click();
-                console.log("Screenshot downloaded");
-            }).catch(function(err) {
-                console.error("Error capturing screenshot:", err);
-            });
-        }
-
-        map.on('moveend', captureScreenshot);
-        map.on('zoomend', captureScreenshot);
-        map.on('click', captureScreenshot);
     </script>
 </body>
 </html>
